@@ -1,0 +1,24 @@
+body a {
+	color: white !important;
+}
+
+body {
+	background-image: url('./assets/background-image.jpeg');
+	background-color: black;
+}
+
+.page-title {
+	display: block;
+	text-align: center;
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+.form-container {
+	width: 400px;
+	margin: auto;
+	padding: 20px;
+	background-color: #2185d0;
+	border: 2px black;
+	border-radius: 5px;
+}
