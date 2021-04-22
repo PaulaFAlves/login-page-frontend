@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -9,6 +9,7 @@ import { useForm } from '../util/hooks';
 function Login(props) {
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
+  const [attempts, setAttempts] = useState(0)
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     userName: '',
@@ -35,13 +36,19 @@ function Login(props) {
     loginUser();
   }
 
+  useEffect(() => {
+    if (errors.general) {
+      setAttempts(attempts + 1)
+    }
+  }, [errors])
+
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+      <Form onSubmit={onSubmit} noValidate className={loading ? 'Carregando...' : ''}>
         <h1>Login</h1>
         <Form.Input
-          label="userName"
-          placeholder="userName.."
+          label="Username"
+          placeholder="Digite o username"
           name="userName"
           type="text"
           value={values.userName}
@@ -50,16 +57,25 @@ function Login(props) {
         />
         <Form.Input
           label="Password"
-          placeholder="Password.."
+          placeholder="Digite a senha"
           name="password"
           type="password"
           value={values.password}
           error={errors.password ? true : false}
           onChange={onChange}
         />
-        <Button type="submit" primary>
+        <Button 
+          type="submit" 
+          disabled={attempts === 3}
+          primary>
           Login
         </Button>
+        {
+          attempts === 3
+          && (
+            <div className="error-message">Você alcançou o máximo de tentativas.</div>
+          )
+        }
       </Form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">

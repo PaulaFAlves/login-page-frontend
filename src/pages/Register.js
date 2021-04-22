@@ -42,7 +42,7 @@ function Register(props) {
       <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
         <h1>Register</h1>
         <Form.Input
-          label="UserName"
+          label="Username"
           placeholder="Username.."
           name="userName"
           type="text"

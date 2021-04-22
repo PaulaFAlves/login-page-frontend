@@ -18,7 +18,11 @@ body {
 	width: 400px;
 	margin: auto;
 	padding: 20px;
-	background-color: #2185d0;
+	background-color: #E5E8E8;
 	border: 2px black;
 	border-radius: 5px;
+}
+
+.error-message {
+	color: #9f3a38;
 }
