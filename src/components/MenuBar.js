@@ -33,7 +33,7 @@ const MenuBar = () => {
 				onClick={handleItemClick}
 				as={Link}
 				to="/register"
-			/>
+			>Registrar</Menu.Item>
 			</Menu.Menu>
 		</Menu>
 	)
