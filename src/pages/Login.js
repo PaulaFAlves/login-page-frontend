@@ -40,7 +40,7 @@ function Login(props) {
     if (errors.general) {
       setAttempts(attempts + 1)
     }
-  }, [errors])
+  }, [errors, attempts])
 
   return (
     <div className="form-container">
